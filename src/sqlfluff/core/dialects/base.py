@@ -115,7 +115,7 @@ class Dialect:
             "bracket_pairs",
             "angle_bracket_pairs",
         ), "Invalid bracket set. Consider using `sets` instead."
-
+        return cast(set[BracketPairTuple], self._sets[label])
         if label not in self._sets:
             self._sets[label] = set()
         return cast(set[BracketPairTuple], self._sets[label])
