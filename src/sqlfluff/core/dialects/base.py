@@ -118,14 +118,15 @@ class Dialect:
 
         if label not in self._sets:
             self._sets[label] = set()
-        return cast(set[BracketPairTuple],
+        return cast(set[BracketPairTuple], self._sets[label])
 
     def update_keywords_set_from_multiline_string(
         self, set_label: str, values: str
     ) -> None:
         """Special function to update a keywords set from a multi-line string."""
         self.sets(set_label).update(
-            [n.strip().upper() for n in values.strip().split("\n")]
+            [n.strip().upper() for n in values.strip().split("
+")]
         )
 
     def copy_as(
@@ -234,7 +235,7 @@ class Dialect:
                     if missing:
                         raise ValueError(  # pragma: no cover
                             f"Cannot replace {n!r} because it's not a subclass and "
-                            f"is missing these from base: {', '.join(missing)}"
+                            f"is missing these from base: {', \}.join(missing)}"
                         )
 
             self._library[n] = replacement
@@ -306,11 +307,16 @@ class Dialect:
         elif name.endswith("KeywordSegment"):  # pragma: no cover
             keyword = name[0:-14]
             keyword_tip = (
-                "\n\nThe syntax in the query is not (yet?) supported. Try to"
+                "
+
+The syntax in the query is not (yet?) supported. Try to"
                 " narrow down your query to a minimal, reproducible case and"
-                " raise an issue on GitHub.\n\n"
+                " raise an issue on GitHub.
+
+"
                 "Or, even better, see this guide on how to help contribute"
-                " keyword and/or dialect updates:\n"
+                " keyword and/or dialect updates:
+"
                 "https://docs.sqlfluff.com/en/stable/perma/contribute_dialect_keywords.html"  # noqa E501
             )
             # Keyword errors are common so avoid printing the whole, scary,
@@ -387,7 +393,7 @@ class Dialect:
 
         if not found:  # pragma: no cover
             raise ValueError(
-                f"Lexer struct insert before '{before}' failed because tag never found."
+                f"Lexer struct insert before '{before}\ failed because tag never found."
             )
         # Overwrite with the buffer once we're done
         self.lexer_matchers = buff
