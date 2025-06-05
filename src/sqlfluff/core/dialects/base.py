@@ -118,7 +118,8 @@ class Dialect:
 
         if label not in self._sets:
             self._sets[label] = set()
-        return cast(set[BracketPairTuple],
+        # Return properly cast set
+        return cast(set[BracketPairTuple], self._sets[label])
 
     def update_keywords_set_from_multiline_string(
         self, set_label: str, values: str
